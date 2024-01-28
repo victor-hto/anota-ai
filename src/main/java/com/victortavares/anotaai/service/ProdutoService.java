@@ -16,12 +16,19 @@ public class ProdutoService {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private AwsSnsService awsSnsService;
+
 
     public Produto insert(ProdutoInsertDTO produtoDTO) {
         var categoria = categoriaService.findById(produtoDTO.categoryId());
 
         var produto = new Produto(produtoDTO, categoria);
-        return repository.save(produto);
+        produto = repository.save(produto);
+
+        awsSnsService.publishCatalogo(produto.getOwnerId());
+
+        return produto;
     }
 
     public List<Produto> findAll() {
@@ -40,6 +47,8 @@ public class ProdutoService {
 
         produto.update(produtoDto, categoria);
         repository.save(produto);
+
+        awsSnsService.publishCatalogo(produto.getOwnerId());
 
         return produto;
     }
