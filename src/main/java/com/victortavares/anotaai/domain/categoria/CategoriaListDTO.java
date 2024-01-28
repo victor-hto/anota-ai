@@ -4,10 +4,10 @@ public record CategoriaListDTO(
         String id,
         String title,
         String description,
-        String ownedId
+        String ownerId
 ) {
 
     public CategoriaListDTO(Categoria categoria) {
-        this(categoria.getId(), categoria.getTitle(), categoria.getDescription(), categoria.getOwnedId());
+        this(categoria.getId(), categoria.getTitle(), categoria.getDescription(), categoria.getOwnerId());
     }
 }

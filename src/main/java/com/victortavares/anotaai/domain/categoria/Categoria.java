@@ -13,17 +13,17 @@ public class Categoria {
     private String id;
     private String title;
     private String description;
-    private String ownedId;
+    private String ownerId;
 
     public Categoria(CategoriaInsertDTO categoriaDto) {
         this.title = categoriaDto.title();
         this.description = categoriaDto.description();
-        this.ownedId = categoriaDto.ownerId();
+        this.ownerId = categoriaDto.ownerId();
     }
 
     public void update(CategoriaUpdateDTO categoriaDto) {
         this.title = categoriaDto.title() == null ? this.title : categoriaDto.title();
         this.description = categoriaDto.description() == null ? this.description : categoriaDto.description();
-        this.ownedId = categoriaDto.ownedId() == null ? this.ownedId : categoriaDto.ownedId();
+        this.ownerId = categoriaDto.ownerId() == null ? this.ownerId : categoriaDto.ownerId();
     }
 }

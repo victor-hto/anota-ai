@@ -1,4 +1,9 @@
 package com.victortavares.anotaai.domain.produto;
 
-public class ProdutoNotFoundException extends RuntimeException {
+import com.victortavares.anotaai.config.infra.ValidacaoException;
+
+public class ProdutoNotFoundException extends ValidacaoException {
+    public ProdutoNotFoundException() {
+        super("Produto não encontrado!");
+    }
 }

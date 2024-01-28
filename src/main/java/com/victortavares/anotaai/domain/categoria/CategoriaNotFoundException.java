@@ -1,4 +1,10 @@
 package com.victortavares.anotaai.domain.categoria;
 
-public class CategoriaNotFoundException extends RuntimeException {
+import com.victortavares.anotaai.config.infra.ValidacaoException;
+
+public class CategoriaNotFoundException extends ValidacaoException {
+
+    public CategoriaNotFoundException() {
+        super("Categoria não encontrada!");
+    }
 }

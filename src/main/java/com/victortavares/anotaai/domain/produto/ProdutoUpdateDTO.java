@@ -6,7 +6,7 @@ public record ProdutoUpdateDTO(
         String id,
         String title,
         String description,
-        String ownedId,
+        String ownerId,
         BigDecimal price,
         String categoryId
 ) {

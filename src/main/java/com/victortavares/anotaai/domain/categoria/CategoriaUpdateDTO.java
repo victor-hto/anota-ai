@@ -7,6 +7,6 @@ public record CategoriaUpdateDTO(
         String id,
         String title,
         String description,
-        String ownedId
+        String ownerId
 ) {
 }
