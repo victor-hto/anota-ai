@@ -1,6 +1,5 @@
 package com.victortavares.anotaai.service;
 
-import com.victortavares.anotaai.domain.categoria.Categoria;
 import com.victortavares.anotaai.domain.produto.*;
 import com.victortavares.anotaai.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +20,12 @@ public class ProdutoService {
 
 
     public Produto insert(ProdutoInsertDTO produtoDTO) {
-        var categoria = categoriaService.findById(produtoDTO.categoryId());
+        categoriaService.findById(produtoDTO.categoryId());
 
-        var produto = new Produto(produtoDTO, categoria);
+        var produto = new Produto(produtoDTO);
         produto = repository.save(produto);
 
-        awsSnsService.publishCatalogo(produto.getOwnerId());
+        awsSnsService.publishCatalogo(produto.toString());
 
         return produto;
     }
@@ -40,15 +39,12 @@ public class ProdutoService {
         var produto = repository.findById(produtoDto.id())
                 .orElseThrow(ProdutoNotFoundException::new);
 
-        Categoria categoria = null;
-        if (produtoDto.categoryId() != null) {
-            categoria = categoriaService.findById(produtoDto.categoryId());
-        }
+        categoriaService.findById(produtoDto.categoryId());
 
-        produto.update(produtoDto, categoria);
+        produto.update(produtoDto);
         repository.save(produto);
 
-        awsSnsService.publishCatalogo(produto.getOwnerId());
+        awsSnsService.publishCatalogo(produto.toString());
 
         return produto;
     }

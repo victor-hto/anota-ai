@@ -11,6 +11,6 @@ public record ProdutoListDTO(
         String categoryId
 ) {
     public ProdutoListDTO(Produto produto) {
-        this(produto.getId(), produto.getTitle(), produto.getDescription(), produto.getOwnerId(), produto.getPrice(), produto.getCategory().getId());
+        this(produto.getId(), produto.getTitle(), produto.getDescription(), produto.getOwnerId(), produto.getPrice(), produto.getCategoryId());
     }
 }
